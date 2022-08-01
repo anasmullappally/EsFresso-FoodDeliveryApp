@@ -17,6 +17,6 @@ app.use('/', userRouter)
 
 db.on('error', console.error.bind(console, 'Mongodb connection failed'))
 
-app.listen(2000, () => {
-    console.log('server running on 2000')
+app.listen(7000, () => {
+    console.log('server running on 7000')
 })
