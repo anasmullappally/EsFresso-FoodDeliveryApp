@@ -83,20 +83,20 @@
   box-shadow: 0px -10px 0 0 #faf9fb;
 }
 .bottomMenu ul li:nth-child(1).active ~ .indicator {
-    transform: translateX(calc(60px * 0));
+  transform: translateX(calc(60px * 0));
 }
 .bottomMenu ul li:nth-child(2).active ~ .indicator {
-    transform: translateX(calc(60px * 1));
+  transform: translateX(calc(60px * 1));
 }
 .bottomMenu ul li:nth-child(3).active ~ .indicator {
-    transform: translateX(calc(60px * 2));
+  transform: translateX(calc(60px * 2));
 }
 .bottomMenu ul li:nth-child(4).active ~ .indicator {
-    transform: translateX(calc(60px * 3));
+  transform: translateX(calc(60px * 3));
 }
 .bottomMenu ul li:nth-child(5).active ~ .indicator {
-    transform: translateX(calc(60px * 4));
+  transform: translateX(calc(60px * 4));
 }
 .bottomMenu ul li:nth-child(6).active ~ .indicator {
-    transform: translateX(calc(60px * 5));
+  transform: translateX(calc(60px * 5));
 }

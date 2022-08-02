@@ -1,5 +1,5 @@
 import { AccountBalanceWalletRounded, Chat, Favorite, HomeRounded, Settings, SummarizeRounded } from '@mui/icons-material'
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import MenuContainer from './MenuContainer'
 import './bottemMenu.css'
 
@@ -7,11 +7,11 @@ function BottomMenu() {
 
   useEffect(() => {
     const menuLi = document.querySelectorAll('#menu li')
-    function setMenuActive (){
-     menuLi.forEach((n)=>n.classList.remove('active'))
-     this.classList.add('active')
+    function setMenuActive() {
+      menuLi.forEach((n) => n.classList.remove('active'))
+      this.classList.add('active')
     }
-    menuLi.forEach(n=>n.addEventListener('click',setMenuActive))
+    menuLi.forEach(n => n.addEventListener('click', setMenuActive))
   }, [])
 
   return (
