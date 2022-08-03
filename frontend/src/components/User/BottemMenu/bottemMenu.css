@@ -100,3 +100,8 @@
 .bottomMenu ul li:nth-child(6).active ~ .indicator {
   transform: translateX(calc(60px * 5));
 }
+@media screen and (min-width: 992px) {
+  .bottomMenu {
+    display: none;
+  }
+}

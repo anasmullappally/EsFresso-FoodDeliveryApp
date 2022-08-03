@@ -1,5 +1,5 @@
-import React from "react";
-import { } from "@mui/material";
+import React, { useState } from "react";
+import {} from "@mui/material";
 import {
   BarChart,
   SearchRounded,
@@ -7,26 +7,24 @@ import {
 } from "@mui/icons-material";
 // import Button from '@mui/material/Button';
 // import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
 // import DialogContentText from '@mui/material/DialogContentText';
 // import DialogTitle from '@mui/material/DialogTitle';
 
 import "./header.css";
 import Login from "../Login/Login";
-
+import Register from "../Register/Register";
 
 function Header() {
-  const [open, setOpen] = React.useState(false);
+  let [login, setLogin] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-  
+  let handleClose = () => setShowRegisterModal(false);
+  let handleCloseLogin = () => setShowLoginModal(false);
+
   return (
     <header>
       <img
@@ -54,25 +52,32 @@ function Header() {
         </div>
         <h2 className="userName">user</h2>
       </div> */}
-      <div className="button">
-        <button className="loginButton" onClick={handleClickOpen}>LogIn</button>
-        <button className="registerButton" onClick={handleClickOpen}>Register</button>
-      </div>
+      {login === false && (
+        <div className="button">
+          <button
+            className="loginButton"
+            onClick={() => setShowLoginModal(true)}
+          >
+            LogIn
+          </button>
+
+          <button
+            className="registerButton"
+            onClick={() => setShowRegisterModal(true)}
+          >
+            Register
+          </button>
+        </div>
+      )}
       <div className="toggleMenu">
         <BarChart className="toggleIcon" />
       </div>
-
-      <Dialog open={open} onClose={handleClose}>
-        {/* <DialogTitle>Subscribe</DialogTitle> */}
-        <DialogContent>
-          <Login />
-        </DialogContent>
-        <DialogActions>
-          {/* <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button> */}
-        </DialogActions>
-      </Dialog>
-
+      {showRegisterModal && (
+        <Register onChange={handleClose} setLogin={setLogin} />
+      )}
+      {showLoginModal && (
+        <Login onChange={handleCloseLogin} setLogin={setLogin} />
+      )}
     </header>
   );
 }

@@ -1,0 +1,12 @@
+.signInButton button {
+  background: #eb2e51;
+  color: black;
+}
+.FormContaier .orContainer {
+    justify-content: center;
+    display: flex;
+    margin-top: 10px;
+}
+.FormContaier .orContainer p {
+    font-weight: bold;
+}

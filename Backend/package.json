@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "google-auth-library": "^8.1.1",
     "mongoose": "^6.5.0"
   },
   "devDependencies": {

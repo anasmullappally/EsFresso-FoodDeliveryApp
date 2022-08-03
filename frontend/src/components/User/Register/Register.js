@@ -1,100 +1,107 @@
-import React from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-// import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import React ,{ useState } from 'react'
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import './register.css'
+import GoogleLogin from 'react-google-login'
+import { useCookies } from 'react-cookie'
+import { gapi } from 'gapi-script'
+import {GOOGLE_CLIENT_ID , serverURL} from '../../../config'
+import axios from 'axios'
 
-const useStyles = makeStyles(theme => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2)
+
+function Register(props) {
+  gapi.load("client:auth2", () => {
+    gapi.client.init({
+      clientId:
+      GOOGLE_CLIENT_ID,
+      plugin_name: "chat",
+    });
+  });
+  const [registerData , setRegisterData] =useState( )
+  const [open, setOpen] = useState(true);
+  const [cookies, setCookies] = useCookies()
+  const handleClose = () => {
+    setOpen(false);
+    props.onChange()
+  };
+  const [signupData , setSignupData] = useState(
+    cookies.signupData ? cookies.signupData : null
+)
+  const handleFailure = (result) => {
+    alert(result)
+    console.log(result);
   }
-}));
 
-export default function Login() {
-  const classes = useStyles();
-
+  const handleRegister = async (googleData) => {
+    const res =await axios ({
+      method:'post',
+      url:`${serverURL}/googleSignUp`,
+      data: {
+        token : googleData.tokenId
+      }
+    })
+    setSignupData(res)
+       if(res) {
+        handleClose()
+       }
+  }
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          {/* <LockOutlinedIcon /> */}
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign Up
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
+    <div>
+      <Dialog className='FormContaier' open={open} maxWidth={'xs'} onClose={handleClose}>
+        <DialogTitle>Register</DialogTitle>
+        <DialogContent >
+          <TextField className='inputField'
+            id="outlined-multiline-flexible"
+            maxRows={4}
+            margin="dense"
+            label="Name"
+            type="text"
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
+          <TextField className='inputField'
+            id="outlined-multiline-flexible"
+            maxRows={4}
+            margin="dense"
+            label="Email"
+            type="email"
             fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
+          <TextField className='inputField'
+            id="outlined-multiline-flexible"
+            maxRows={4}
+            margin="dense"
+            label="Phone number"
+            type="number"
             fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign Up
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              {/* <Link href="#" variant="body2">
-                Forgot password?
-              </Link> */}
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Already have an account? Sign In"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
-  );
+          />
+          <div className="signInButton">
+            <Button >Send OTP</Button>
+          </div>
+          <div className="orContainer">
+            <p>OR</p>
+          </div>
+          <div className="googleAuth">
+            <GoogleLogin
+              clientId={GOOGLE_CLIENT_ID}
+              
+              buttonText='Log in with Google'
+              onSuccess={handleRegister}
+              onFailure={handleFailure}
+              cookiePolicy='single_host_origin'
+              ></GoogleLogin>
+          </div>
+
+        </DialogContent>
+        <DialogActions>
+
+        </DialogActions>
+      </Dialog>
+    </div>
+  )
 }
+
+export default Register
