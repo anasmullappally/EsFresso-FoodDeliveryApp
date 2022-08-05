@@ -1,4 +1,4 @@
-import React ,{ useState } from 'react'
+import React, { useState } from 'react'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -9,7 +9,7 @@ import './register.css'
 import GoogleLogin from 'react-google-login'
 import { useCookies } from 'react-cookie'
 import { gapi } from 'gapi-script'
-import {GOOGLE_CLIENT_ID , serverURL} from '../../../config'
+import { GOOGLE_CLIENT_ID, serverURL } from '../../../config'
 import axios from 'axios'
 
 
@@ -17,38 +17,45 @@ function Register(props) {
   gapi.load("client:auth2", () => {
     gapi.client.init({
       clientId:
-      GOOGLE_CLIENT_ID,
+        GOOGLE_CLIENT_ID,
       plugin_name: "chat",
     });
   });
-  const [registerData , setRegisterData] =useState( )
   const [open, setOpen] = useState(true);
   const [cookies, setCookies] = useCookies()
   const handleClose = () => {
     setOpen(false);
     props.onChange()
   };
-  const [signupData , setSignupData] = useState(
+  const [signupData, setSignupData] = useState(
     cookies.signupData ? cookies.signupData : null
-)
+  )
   const handleFailure = (result) => {
-    alert(result)
+    // alert(result)
     console.log(result);
   }
 
   const handleRegister = async (googleData) => {
-    const res =await axios ({
-      method:'post',
-      url:`${serverURL}/googleSignUp`,
-      data: {
-        token : googleData.tokenId
-      }
-    })
-    setSignupData(res)
-       if(res) {
+    try {
+      const res = await axios({
+        method: 'post',
+        url: `${serverURL}/googleSignUp`,
+        data: {
+          token: googleData.tokenId
+        }
+      })
+      setSignupData(res)
+      if (res) {
         handleClose()
-       }
+        props.setLogin(true)
+        localStorage.setItem('login', true)
+      }
+      setCookies('signupData', res, { path: '/' })
+    } catch (err) {
+
+    }
   }
+
   return (
     <div>
       <Dialog className='FormContaier' open={open} maxWidth={'xs'} onClose={handleClose}>
@@ -87,12 +94,13 @@ function Register(props) {
           <div className="googleAuth">
             <GoogleLogin
               clientId={GOOGLE_CLIENT_ID}
-              
+
               buttonText='Log in with Google'
               onSuccess={handleRegister}
               onFailure={handleFailure}
               cookiePolicy='single_host_origin'
-              ></GoogleLogin>
+              className='googleButton'
+            ></GoogleLogin>
           </div>
 
         </DialogContent>

@@ -42,7 +42,7 @@ function Header() {
           <p>3</p>
         </div>
       </div> */}
-      {/* <div className="profileContainer">
+      {login && <div className="profileContainer">
         <div className="imgBox">
           <img
             className="profilePic"
@@ -51,7 +51,7 @@ function Header() {
           />
         </div>
         <h2 className="userName">user</h2>
-      </div> */}
+      </div>}
       {login === false && (
         <div className="button">
           <button
@@ -69,9 +69,9 @@ function Header() {
           </button>
         </div>
       )}
-      <div className="toggleMenu">
+      {/* <div className="toggleMenu">
         <BarChart className="toggleIcon" />
-      </div>
+      </div> */}
       {showRegisterModal && (
         <Register onChange={handleClose} setLogin={setLogin} />
       )}

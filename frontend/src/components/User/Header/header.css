@@ -41,7 +41,7 @@ header {
   font-size: 14px;
   font-weight: 500;
 } */
-/* .shoppingCart {
+ .shoppingCart {
   position: relative;
   width: 30px;
   height: 30px;
@@ -68,7 +68,7 @@ header {
 }
 .profileContainer {
   display: flex;
-  align-items: center;
+  align-items: end;
 }
 .profileContainer .imgBox {
   width: 40px;
@@ -91,7 +91,7 @@ header {
   font-weight: 500;
   display: none;
   align-items: center;
-} */
+} 
 .toggleMenu {
   transform: rotate(90deg);
 }
@@ -113,7 +113,7 @@ header {
   text-decoration: none;
   cursor: pointer;
   position: absolute;
-  right: 60px; ;
+  right: 40px; ;
   /* bottom: 0; */
 }
 .loginButton:hover {

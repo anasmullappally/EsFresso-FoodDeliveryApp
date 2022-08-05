@@ -10,3 +10,8 @@
 .FormContaier .orContainer p {
     font-weight: bold;
 }
+.FormContaier .googleAuth .googleButton{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
