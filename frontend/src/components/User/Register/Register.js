@@ -13,7 +13,7 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { signupSchema } from '../../../validation/useSingUp'
-import OTPInput from "otp-input-react";
+import OTPInput, { ResendOTP } from "otp-input-react";
 
 function Register(props) {
   gapi.load("client:auth2", () => {
@@ -24,6 +24,12 @@ function Register(props) {
     });
   });
   const [open, setOpen] = useState(true);
+  const [userExist, setUserExist] = useState(false)
+  const [showOtp, setShowOtp] = useState(false)
+  const [OTP, setOTP] = useState("");
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(signupSchema),
+  })
   const handleClose = () => {
     setOpen(false);
     props.onChange()
@@ -32,7 +38,7 @@ function Register(props) {
     // alert(result)
     console.log(result);
   }
-  const [OTP, setOTP] = useState("");
+
 
   const handleRegister = async (googleData) => {
     try {
@@ -55,14 +61,24 @@ function Register(props) {
       props.setLogin(true);
     }
   }
-  const { register, handleSubmit, formState } = useForm({
-    resolver: yupResolver(signupSchema),
 
-  })
+  const submitForm = async (data) => {
+    try {
+      const res = await axios({
+        method: 'post',
+        url: `${serverURL}/otpRequest`,
+        data: data
+      })
+      if (res.status === 200) {
+        setUserExist(false)
+        setShowOtp(true)
+      }
+    } catch (err) {
+      if (err.response.status === 409) {
+        setUserExist(true)
+      }
 
-  const submitForm = (data) => {
-    console.log(data);
-    console.log(formState.errors)
+    }
 
   }
 
@@ -104,19 +120,19 @@ function Register(props) {
               fullWidth
               {...register('phoneNumber')}
             />
+            {userExist && <p className='errorMessage'>User Already Exist</p>}
             <p className='errorMessage'>{formState.errors.phoneNumber?.message}</p>
             <div className="signInButton">
-              <Button type='submit' >Send OTP</Button>
+              {!showOtp && <Button type='submit'>Send OTP</Button>}
             </div>
 
-             <div className="otpForm">
-              <OTPInput value={OTP} onChange={setOTP} autoFocus OTPLength={4} otpType="number" disabled={false}  />
-             
+            {showOtp && <div className="otpForm">
+              <OTPInput value={OTP} onChange={setOTP} autoFocus OTPLength={4} otpType="number" disabled={false} />
+              <ResendOTP className='resendOtp' onResendClick={() => { handleSubmit(submitForm) }} />
               <div className="signInButton">
-              <Button type='submit' >REGISTER</Button>
-            </div> 
-
-            </div>
+                <Button  >REGISTER</Button>
+              </div>
+            </div>}
             <div className="orContainer">
               <p>OR</p>
             </div>

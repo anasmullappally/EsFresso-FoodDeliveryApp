@@ -9,9 +9,18 @@ import './login.css'
 import GoogleLogin from 'react-google-login'
 import { GOOGLE_CLIENT_ID, serverURL } from '../../../config'
 import axios from 'axios'
+import OTPInput, { ResendOTP } from "otp-input-react";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup'
+import { signupSchema } from '../../../validation/useSingUp'
 
 function Login(props) {
+  const [OTP, setOTP] = useState("");
   const [open, setOpen] = useState(true);
+  const [showOtp, setShowOtp] = useState(false)
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(signupSchema),
+  })
   const handleClose = () => {
     setOpen(false);
     props.onChange()
@@ -34,42 +43,55 @@ function Login(props) {
       localStorage.setItem('login', true)
     }
   }
+  const submitForm = async (data) => { 
+    console.log(data);
+  }
 
 
   return (
     <div>
       <Dialog className='FormContaier' open={open} maxWidth={'xs'} onClose={handleClose}>
         <DialogTitle>Signin</DialogTitle>
-        <DialogContent >
-          <TextField className='inputField'
-            id="outlined-multiline-flexible"
-            maxRows={4}
-            margin="dense"
-            label="Phone number"
-            type="number"
-            fullWidth
-          />
-          <div className="signInButton">
-            <Button variant='contained'>Send OTP</Button>
-          </div>
-          <div className="orContainer">
-            <p>OR</p>
-          </div>
-          <div className="googleAuth">
-            <GoogleLogin
-              clientId={GOOGLE_CLIENT_ID}
-              buttonText='Sign In With Google'
-              onSuccess={handleSignIn}
-              onFailure={handleFailure}
-              cookiePolicy='single_host_origin'
-              className='googleButton'
-            ></GoogleLogin>
-          </div>
+        <form onSubmit={handleSubmit(submitForm)}>
+          <DialogContent >
 
-        </DialogContent>
-        <DialogActions>
+            <TextField className='inputField'
+              id="outlined-multiline-flexible"
+              maxRows={4}
+              margin="dense"
+              label="Phone Number"
+              type="number"
+              name='phoneNumber'
+              fullWidth
+              {...register('phoneNumber')}
+            />
+             <p className='errorMessage'>{formState.errors.phoneNumber?.message}</p>
+            <div className="signInButton">
+              <Button type='submit' variant='contained'>Send OTP</Button>
+            </div>
+            {showOtp && <div className="otpForm">
+              <OTPInput value={OTP} onChange={setOTP} autoFocus OTPLength={4} otpType="number" disabled={false} />
+              <ResendOTP className='resendOtp' onResendClick={() => console.log('resend')} />
+              <div className="signInButton">
+                <Button  >REGISTER</Button>
+              </div>
+            </div>}
+            <div className="orContainer">
+              <p>OR</p>
+            </div>
+            <div className="googleAuth">
+              <GoogleLogin
+                clientId={GOOGLE_CLIENT_ID}
+                buttonText='Sign In With Google'
+                onSuccess={handleSignIn}
+                onFailure={handleFailure}
+                cookiePolicy='single_host_origin'
+                className='googleButton'
+              ></GoogleLogin>
+            </div>
 
-        </DialogActions>
+          </DialogContent>
+          </form>
       </Dialog>
     </div>
   )

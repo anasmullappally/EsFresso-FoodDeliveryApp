@@ -21,4 +21,9 @@
 }
 .errorMessage {
   color: red;
+  font-weight: bold;
+}
+.resendOtp {
+  margin-top: 20px;
+  color: #eb2e51;
 }
