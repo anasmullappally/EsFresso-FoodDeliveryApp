@@ -16,10 +16,11 @@ module.exports = {
       const { name, email, picture } = ticket.getPayload();
       user = { name, email, picture };
       console.log(user);
-      await User.create({...user});
+      await User.create({ ...user });
       res.status(201).json({ name, email, picture });
     } catch (err) {
       console.log(err);
+      res.status(200).json({  });
     }
   },
 };

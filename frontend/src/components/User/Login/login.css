@@ -5,3 +5,8 @@
   margin-top: 10px;
   width: 100%;
 }
+.FormContaier .googleAuth .googleButton{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

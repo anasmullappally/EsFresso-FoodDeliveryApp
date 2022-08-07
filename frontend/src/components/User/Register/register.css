@@ -15,3 +15,10 @@
   display: flex;
   justify-content: center;
 }
+.otpForm {
+  margin-top: 20px;
+  width: 100%;
+}
+.errorMessage {
+  color: red;
+}

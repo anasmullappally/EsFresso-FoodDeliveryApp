@@ -9,16 +9,9 @@ import './login.css'
 import GoogleLogin from 'react-google-login'
 import { GOOGLE_CLIENT_ID, serverURL } from '../../../config'
 import axios from 'axios'
-import { useCookies } from 'react-cookie'
 
 function Login(props) {
   const [open, setOpen] = useState(true);
-  const [cookies, setCookies] = useCookies()
-  const [loginData, setLoginData] = useState(
-    cookies.loginData ? cookies.loginData : null
-  )
-
-
   const handleClose = () => {
     setOpen(false);
     props.onChange()
@@ -35,11 +28,11 @@ function Login(props) {
         token: googleData.tokenId
       }
     })
-    setLoginData(res)
     if (res) {
       handleClose()
+      props.setLogin(true)
+      localStorage.setItem('login', true)
     }
-    setCookies('LoginData', res, { path: '/' })
   }
 
 
@@ -69,6 +62,7 @@ function Login(props) {
               onSuccess={handleSignIn}
               onFailure={handleFailure}
               cookiePolicy='single_host_origin'
+              className='googleButton'
             ></GoogleLogin>
           </div>
 
