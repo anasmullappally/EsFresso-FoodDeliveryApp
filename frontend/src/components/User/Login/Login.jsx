@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
+// import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import './login.css'
@@ -13,6 +13,7 @@ import OTPInput, { ResendOTP } from "otp-input-react";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { signupSchema } from '../../../validation/useSingUp'
+import { gapi } from 'gapi-script'
 
 function Login(props) {
   const [OTP, setOTP] = useState("");
@@ -21,6 +22,13 @@ function Login(props) {
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(signupSchema),
   })
+  gapi.load("client:auth2", () => {
+    gapi.client.init({
+      clientId:
+        GOOGLE_CLIENT_ID,
+      plugin_name: "chat",
+    });
+  });
   const handleClose = () => {
     setOpen(false);
     props.onChange()
@@ -43,11 +51,14 @@ function Login(props) {
       localStorage.setItem('login', true)
     }
   }
-  const submitForm = async (data) => { 
-    console.log(data);
+  const submitForm =  (data) => {
+    try {
+      console.log(data);
+
+    } catch (err) {
+      console.log(err)
+    }
   }
-
-
   return (
     <div>
       <Dialog className='FormContaier' open={open} maxWidth={'xs'} onClose={handleClose}>
@@ -65,9 +76,20 @@ function Login(props) {
               fullWidth
               {...register('phoneNumber')}
             />
-             <p className='errorMessage'>{formState.errors.phoneNumber?.message}</p>
+            <p className='errorMessage'>{formState.errors.phoneNumber?.message}</p>
+            <TextField className='inputField'
+              id="outlined-multiline-flexible"
+              maxRows={4}
+              margin="dense"
+              label="Email"
+              type="email"
+              name='email'
+              fullWidth
+              {...register('email')}
+            />
             <div className="signInButton">
               <Button type='submit' variant='contained'>Send OTP</Button>
+              
             </div>
             {showOtp && <div className="otpForm">
               <OTPInput value={OTP} onChange={setOTP} autoFocus OTPLength={4} otpType="number" disabled={false} />
@@ -91,7 +113,7 @@ function Login(props) {
             </div>
 
           </DialogContent>
-          </form>
+        </form>
       </Dialog>
     </div>
   )

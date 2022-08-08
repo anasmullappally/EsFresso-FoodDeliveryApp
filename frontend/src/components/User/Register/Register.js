@@ -27,6 +27,7 @@ function Register(props) {
   const [userExist, setUserExist] = useState(false)
   const [showOtp, setShowOtp] = useState(false)
   const [OTP, setOTP] = useState("");
+  const [registerData, setRegisterData] = useState('')
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(signupSchema),
   })
@@ -44,11 +45,12 @@ function Register(props) {
     try {
       const res = await axios({
         method: 'post',
-        url: `${serverURL}/googleSignUp`,
+        url: `${serverURL}/googleSignIn`,
         data: {
           token: googleData.tokenId
         }
       })
+      console.log(res);
       if (res) {
         handleClose()
         props.setLogin(true)
@@ -56,19 +58,20 @@ function Register(props) {
       }
 
     } catch (err) {
-      handleClose();
-      localStorage.setItem('login', true);
-      props.setLogin(true);
+      console.log(err);
     }
   }
 
   const submitForm = async (data) => {
+    // console.log(data);
+    setRegisterData(data)
     try {
       const res = await axios({
         method: 'post',
         url: `${serverURL}/otpRequest`,
         data: data
       })
+      console.log(res);
       if (res.status === 200) {
         setUserExist(false)
         setShowOtp(true)
@@ -77,17 +80,34 @@ function Register(props) {
       if (err.response.status === 409) {
         setUserExist(true)
       }
-
     }
-
   }
+  const verifyOtp = async () => {
 
+    console.log(OTP);
+    console.log(registerData);
+    try {
+      const res = await axios({
+        method: 'post',
+        url: `${serverURL}/otpVerify`,
+        data: {
+          otp: OTP,
+          data: registerData
+        }
+      })
+      console.log(res);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div>
       <Dialog className='FormContaier' open={open} maxWidth={'xs'} onClose={handleClose}>
         <DialogTitle>Register</DialogTitle>
-        <form onSubmit={handleSubmit(submitForm)}>
-          <DialogContent >
+
+        <DialogContent >
+          <form onSubmit={handleSubmit(submitForm)}>
             <TextField className='inputField'
               id="outlined-multiline-flexible"
               maxRows={4}
@@ -122,36 +142,37 @@ function Register(props) {
             />
             {userExist && <p className='errorMessage'>User Already Exist</p>}
             <p className='errorMessage'>{formState.errors.phoneNumber?.message}</p>
+
             <div className="signInButton">
               {!showOtp && <Button type='submit'>Send OTP</Button>}
             </div>
-
+          </form>
+          <form onSubmit={handleSubmit(verifyOtp)} >
             {showOtp && <div className="otpForm">
-              <OTPInput value={OTP} onChange={setOTP} autoFocus OTPLength={4} otpType="number" disabled={false} />
-              <ResendOTP className='resendOtp' onResendClick={() => { handleSubmit(submitForm) }} />
+              <OTPInput name='otp' value={OTP} onChange={setOTP} autoFocus OTPLength={4} otpType="number" disabled={false} />
+              <ResendOTP className='resendOtp' onResendClick={() => console.log('jfdhjk')} />
               <div className="signInButton">
-                <Button  >REGISTER</Button>
+
+                <Button type='submit' >REGISTER</Button>
               </div>
             </div>}
-            <div className="orContainer">
-              <p>OR</p>
-            </div>
-            <div className="googleAuth">
-              <GoogleLogin
-                clientId={GOOGLE_CLIENT_ID}
+          </form>
+          <div className="orContainer">
+            <p>OR</p>
+          </div>
+          <div className="googleAuth">
+            <GoogleLogin
+              clientId={GOOGLE_CLIENT_ID}
+              buttonText='Log in with Google'
+              onSuccess={handleRegister}
+              onFailure={handleFailure}
+              cookiePolicy='single_host_origin'
+              className='googleButton'
+            ></GoogleLogin>
+          </div>
+        </DialogContent>
 
-                buttonText='Log in with Google'
-                onSuccess={handleRegister}
-                onFailure={handleFailure}
-                cookiePolicy='single_host_origin'
-                className='googleButton'
-              ></GoogleLogin>
-            </div>
-
-          </DialogContent>
-        </form>
         <DialogActions>
-
         </DialogActions>
       </Dialog>
     </div>
