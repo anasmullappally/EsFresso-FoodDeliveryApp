@@ -100,7 +100,6 @@ function Header() {
           >
             LogIn
           </button>
-
           <button
             className="registerButton"
             onClick={() => setShowRegisterModal(true)}

@@ -4,3 +4,283 @@
   background: rgb(222, 95, 95);
   margin-top: +60px;
 } */
+
+main {
+  width: 100%;
+  height: auto;
+  margin-top: 60px;
+}
+main .mainContainer {
+  position: relative;
+}
+main .mainContainer .bannerContainer {
+  background-color: #4950b5;
+  width: 100%;
+  max-width: 100%;
+  height: 40px;
+  position: relative;
+  min-height: 350px;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 902px) {
+  main .mainContainer .bannerContainer {
+    height: 100vh;
+  }
+
+  main .mainContainer .bannerContainer .bannerSlogan .mainSlogan {
+    font-size: 90px !important;
+  }
+  .bannerSlogan .subSlogan {
+    font-size: 30px;
+  }
+
+  .bannerContainer .searchLocation {
+    width: 50% !important;
+  }
+
+  main .topHotelHeading {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+  }
+
+  main .topHotelHeading h1 {
+    font-size: 50px !important;
+  }
+
+  main .topHotelHeading hr {
+    display: none;
+  }
+}
+
+main .mainContainer .bannerContainer .banner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+main .mainContainer .bannerContainer .bannerSlogan {
+  position: absolute;
+  z-index: 102px;
+  top: 30%;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+}
+
+main .mainContainer .bannerContainer .bannerSlogan .mainSlogan {
+  color: #9ca3b2;
+  font-size: 50px;
+  font-family: "Bree Serif", serif;
+}
+
+.bannerSlogan .subSlogan {
+  color: #ffffff;
+}
+
+main .mainContainer .bannerContainer .searchLocation {
+  background-color: #fff;
+  border-radius: 25px;
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  position: absolute;
+  align-items: center;
+  top: 55%;
+  overflow: hidden;
+  padding: 8px 15px;
+  width: 90%;
+}
+main .mainContainer .bannerContainer .searchLocation input {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5px 0 0;
+  outline: none;
+  border: none;
+  background-color: white;
+}
+
+main .mainContainer .bannerContainer .searchLocation select {
+  width: 50%;
+  justify-content: space-between;
+  outline: none;
+  border: none;
+  background-color: white;
+  display: inline-block;
+  font: inherit;
+  line-height: 1.5em;
+  padding: 0.5em 3.5em 0.5em 1em;
+
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+main .mainContainer .bannerContainer .searchLocation .minimal {
+  background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-repeat: no-repeat;
+}
+
+main .mainContainer .bannerContainer .searchLocation .minimal:focus {
+  background-image: linear-gradient(45deg, green 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, green 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em,
+    calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-repeat: no-repeat;
+  border-color: green;
+  outline: 0;
+}
+
+main .mainContainer .bannerContainer .searchLocation select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+
+main .topHotelHeading {
+  margin-top: 14px;
+}
+main .topHotelHeading h1 {
+  font-size: 20px;
+  margin-left: 15px;
+}
+main .topHotelHeading hr {
+  width: 80vw;
+  font-weight: 800;
+  margin: 8px auto;
+}
+
+main
+  .slide-container
+  .slide-content
+  .card-wrapper
+  .card
+  .image-content
+  .card-image {
+  position: relative;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-color: #fff;
+  padding: 3px;
+}
+
+main .slide-container .slide-content .card-wrapper .card {
+  border-radius: 25px;
+  background-color: #fff;
+  width: 320px;
+}
+
+main .slide-container .slide-content .card-wrapper .card .image-content,
+.card-content {
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 14px;
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+main
+  .slide-container
+  .slide-content
+  .card-wrapper
+  .card
+  .image-content
+  .card-image
+  img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 40x solid #4e1c1c;
+}
+
+.card .image-content {
+  position: relative;
+  row-gap: 5px;
+  padding: 25px 0;
+}
+
+.image-content .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #4e1c1c;
+  border-radius: 25px 25px 0 25px;
+}
+
+.image-content .overlay::before,
+.image-content .overlay::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -40px;
+  height: 40px;
+  width: 40px;
+  background-color: #4e1c1c;
+  border-color: #fff;
+}
+.image-content .overlay::after {
+  border-radius: 0 25px 0 0;
+  border-color: #fff;
+  background-color: rgb(255, 255, 255);
+}
+main .slide-container {
+  justify-content: center;
+  display: flex;
+  margin: 0 20px;
+}
+
+main .slide-container .slide-content .card-wrapper .card .card-content .name {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+main
+  .slide-container
+  .slide-content
+  .card-wrapper
+  .card
+  .card-content
+  .name
+  .rating {
+  font-size: 14px;
+  color: #707070;
+}
+.card-content .rating .MuiSvgIcon-root {
+  font-size: 13px;
+  margin-top: 13px;
+  text-align: center;
+  color: #707070;
+}
+
+.card-content button {
+  border: none;
+  font-size: 16px;
+  color: #fff;
+  padding: 8px 16px;
+  background-color: #4e1c1c;
+  border-radius: 6px;
+  margin: 14px;
+  cursor: pointer;
+  transition: all 0.3;
+}
+
+.card-content button:hover {
+  background-color: #4e1c1c;
+}

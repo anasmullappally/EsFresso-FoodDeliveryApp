@@ -5,3 +5,7 @@ export const signupSchema = yup.object().shape({
   email: yup.string().email().required(),
   phoneNumber: yup.number().positive().integer().min(10).required(),
 });
+
+export const signInSchema = yup.object().shape({
+  phoneNumber: yup.number().positive().integer().min(10).required(),
+})

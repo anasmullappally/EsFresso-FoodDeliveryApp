@@ -2,6 +2,7 @@ const cors = require('cors')
 const express = require('express')
 const bodyParser = require('body-parser')
 const db = require('./DataBase/connection')
+const cookieParser = require('cookie-parser')
 
 const app = express()
 const userRouter = require('./routes/userRoutes')
@@ -13,6 +14,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cookieParser())
 app.use((err,req,res,next)=>{  
     const errorStatus = err.status || 500
     const errorMessage = err.message || "Something went wrong!"

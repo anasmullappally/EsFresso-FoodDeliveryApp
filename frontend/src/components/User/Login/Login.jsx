@@ -12,15 +12,18 @@ import axios from 'axios'
 import OTPInput, { ResendOTP } from "otp-input-react";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
-import { signupSchema } from '../../../validation/useSingUp'
+import { signInSchema } from '../../../validation/useSingUp'
 import { gapi } from 'gapi-script'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login(props) {
   const [OTP, setOTP] = useState("");
   const [open, setOpen] = useState(true);
   const [showOtp, setShowOtp] = useState(false)
+  const [userData, setUserData] = useState('')
   const { register, handleSubmit, formState } = useForm({
-    resolver: yupResolver(signupSchema),
+    resolver: yupResolver(signInSchema),
   })
   gapi.load("client:auth2", () => {
     gapi.client.init({
@@ -38,34 +41,71 @@ function Login(props) {
     console.log(result);
   }
   const handleSignIn = async (googleData) => {
-    const res = await axios({
-      method: 'post',
-      url: `${serverURL}/googleSignIn`,
-      data: {
-        token: googleData.tokenId
+    try {
+      const res = await axios({
+        method: 'post',
+        url: `${serverURL}/googleSignIn`,
+        data: {
+          token: googleData.tokenId
+        }
+      })
+      if (res) {
+        toast.success('Sign-In success')
+        handleClose()
+        props.setLogin(true)
+        localStorage.setItem('login', true)
       }
-    })
-    if (res) {
-      handleClose()
-      props.setLogin(true)
-      localStorage.setItem('login', true)
+    } catch (error) {
+
     }
   }
-  const submitForm =  (data) => {
+  const loginData = async (data) => {
     try {
-      console.log(data);
-
+      const res = await axios({
+        method: 'post',
+        url: `${serverURL}/signIn`,
+        data: data
+      })
+      if (res.status === 200) {
+        setUserData(data.phoneNumber)
+        toast.success('OTP Sent Successfully')
+        setShowOtp(true)
+      }
     } catch (err) {
-      console.log(err)
+      if (err.response.status === 409) {
+        toast.error('No data Found, Please Register ')
+      }
+    }
+  }
+  const verifySignIn = async () => {
+    try {
+      const res = await axios({
+        method: 'post',
+        url: `${serverURL}/verifySignin`,
+        data: {
+         otp : OTP,
+         phoneNumber: userData
+        }
+      })
+      if (res.status === 200) {
+        toast.success('Sign-In Success')
+        handleClose()
+        props.setLogin(true)
+        localStorage.setItem('login', true)
+      }
+    } catch (error) {
+      if (error.response.status === 409) {
+        toast.error('Invalid OTP')
+      }
     }
   }
   return (
     <div>
+
       <Dialog className='FormContaier' open={open} maxWidth={'xs'} onClose={handleClose}>
         <DialogTitle>Signin</DialogTitle>
-        <form onSubmit={handleSubmit(submitForm)}>
-          <DialogContent >
-
+        <DialogContent >
+          <form onSubmit={handleSubmit(loginData)}>
             <TextField className='inputField'
               id="outlined-multiline-flexible"
               maxRows={4}
@@ -77,43 +117,36 @@ function Login(props) {
               {...register('phoneNumber')}
             />
             <p className='errorMessage'>{formState.errors.phoneNumber?.message}</p>
-            <TextField className='inputField'
-              id="outlined-multiline-flexible"
-              maxRows={4}
-              margin="dense"
-              label="Email"
-              type="email"
-              name='email'
-              fullWidth
-              {...register('email')}
-            />
             <div className="signInButton">
-              <Button type='submit' variant='contained'>Send OTP</Button>
-              
+              {!showOtp && <Button type='submit' variant='contained'>Send OTP</Button>}
             </div>
-            {showOtp && <div className="otpForm">
+          </form>
+          {showOtp && <div className="otpForm">
+            <form onSubmit={handleSubmit(verifySignIn)}>
               <OTPInput value={OTP} onChange={setOTP} autoFocus OTPLength={4} otpType="number" disabled={false} />
               <ResendOTP className='resendOtp' onResendClick={() => console.log('resend')} />
               <div className="signInButton">
-                <Button  >REGISTER</Button>
+                <Button type='submit' >REGISTER</Button>
               </div>
-            </div>}
-            <div className="orContainer">
-              <p>OR</p>
-            </div>
-            <div className="googleAuth">
-              <GoogleLogin
-                clientId={GOOGLE_CLIENT_ID}
-                buttonText='Sign In With Google'
-                onSuccess={handleSignIn}
-                onFailure={handleFailure}
-                cookiePolicy='single_host_origin'
-                className='googleButton'
-              ></GoogleLogin>
-            </div>
+            </form>
+          </div>}
 
-          </DialogContent>
-        </form>
+          <div className="orContainer">
+            <p>OR</p>
+          </div>
+          <div className="googleAuth">
+            <GoogleLogin
+              clientId={GOOGLE_CLIENT_ID}
+              buttonText='Sign In With Google'
+              onSuccess={handleSignIn}
+              onFailure={handleFailure}
+              cookiePolicy='single_host_origin'
+              className='googleButton'
+            ></GoogleLogin>
+          </div>
+
+        </DialogContent>
+
       </Dialog>
     </div>
   )
