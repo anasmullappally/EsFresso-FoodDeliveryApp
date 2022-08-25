@@ -4,7 +4,7 @@ import Header from '../../components/User/Header/Header';
 import Main from '../../components/User/Main/Main';
 function Home() {
   return (
-    <div>
+    <div style={{overflow :'hidden'}}>
       <Header />
       <Main />
       <BottomMenu />

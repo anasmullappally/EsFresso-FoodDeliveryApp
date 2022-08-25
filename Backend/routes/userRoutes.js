@@ -1,5 +1,5 @@
 const express = require("express");
-const userController = require("../Controller/authentication");
+const userController = require("../Controller/user/authentication");
 const router = express.Router();
 
 router.post("/googleSignIn", userController.googleSignIn);

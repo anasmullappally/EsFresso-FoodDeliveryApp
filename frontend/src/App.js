@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./Pages/User/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
+import AdminLogin from "./Pages/Admin/Login/AdminLogin";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<AdminLogin/>} />
         </Routes>
       </BrowserRouter>
     </div>

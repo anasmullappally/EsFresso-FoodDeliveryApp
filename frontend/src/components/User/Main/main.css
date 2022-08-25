@@ -9,6 +9,7 @@ main {
   width: 100%;
   height: auto;
   margin-top: 60px;
+  overflow: hidden;
 }
 main .mainContainer {
   position: relative;
