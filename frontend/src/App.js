@@ -7,7 +7,7 @@ import AdminLogin from "./Pages/Admin/Login/AdminLogin";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{overflow:'hidden'}}>
       <ToastContainer
       position="top-left"
       autoClose={3000}
