@@ -4,6 +4,7 @@ import Home from "./Pages/User/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import AdminLogin from "./Pages/Admin/Login/AdminLogin";
+import AdminHome from "./Pages/Admin/Home/AdminHome";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/admin" element={<AdminLogin/>} />
+          <Route path="/adminHome" element={<AdminHome/>} />
         </Routes>
       </BrowserRouter>
     </div>
