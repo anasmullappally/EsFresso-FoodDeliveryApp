@@ -31,7 +31,7 @@ In order to access the admin panel on "/admin" you need to provide the admin ema
 
 To run this application, you have to set your own environmental variables. For security reasons, some variables have been hidden from view and used as environmental variables with the help of dotenv package. Below are the variables that you need to set in order to run the application:
 
-### Backend
+#### Backend
 
 - GOOGLE_CLIENT_ID: This is the Google Client ID for Google signIn.
 
@@ -49,7 +49,7 @@ To run this application, you have to set your own environmental variables. For s
 
 - ORIGIN: Mention the frontend Origin
 
-### frontend
+#### frontend
 
 
 
