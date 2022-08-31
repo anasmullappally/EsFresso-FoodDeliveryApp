@@ -7,7 +7,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import './login.css'
 import GoogleLogin from 'react-google-login'
-import { GOOGLE_CLIENT_ID, serverURL } from '../../../config'
 import axios from 'axios'
 import OTPInput, { ResendOTP } from "otp-input-react";
 import { useForm } from 'react-hook-form';
@@ -28,7 +27,7 @@ function Login(props) {
   gapi.load("client:auth2", () => {
     gapi.client.init({
       clientId:
-        GOOGLE_CLIENT_ID,
+       process.env.REACT_APP_GOOGLE_CLIENT_ID,
       plugin_name: "chat",
     });
   });
@@ -44,7 +43,7 @@ function Login(props) {
     try {
       const res = await axios({
         method: 'post',
-        url: `${serverURL}/googleSignIn`,
+        url: `${process.env.REACT_APP_serverURL}/googleSignIn`,
         data: {
           token: googleData.tokenId
         }
@@ -63,7 +62,7 @@ function Login(props) {
     try {
       const res = await axios({
         method: 'post',
-        url: `${serverURL}/signIn`,
+        url: `${process.env.REACT_APP_serverURL}/signIn`,
         data: data
       })
       if (res.status === 200) {
@@ -81,7 +80,7 @@ function Login(props) {
     try {
       const res = await axios({
         method: 'post',
-        url: `${serverURL}/verifySignin`,
+        url: `${process.env.REACT_APP_serverURL}/verifySignin`,
         data: {
          otp : OTP,
          phoneNumber: userData
@@ -136,7 +135,7 @@ function Login(props) {
           </div>
           <div className="googleAuth">
             <GoogleLogin
-              clientId={GOOGLE_CLIENT_ID}
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               buttonText='Sign In With Google'
               onSuccess={handleSignIn}
               onFailure={handleFailure}

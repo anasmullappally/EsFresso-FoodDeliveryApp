@@ -26,7 +26,6 @@ function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
-    console.log('avgdvcdacf');
     setAnchorEl(event.currentTarget);
   };
   let handleClose = () => {

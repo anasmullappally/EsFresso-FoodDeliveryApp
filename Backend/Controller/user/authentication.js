@@ -60,6 +60,7 @@ module.exports = {
   signIn: asyncHandler(async (req, res, next) => {
     const data = req.body;
     const user = await Users.findOne({ phoneNumber: data.phoneNumber });
+    console.log(user);
     if (!user) return next(createError(409, "User Not exist"));
 
     otpHandler

@@ -18,7 +18,7 @@ function App() {
       rtl={false}
       pauseOnFocusLoss
       draggable
-      pauseOnHover
+      pauseOnHover 
       />
       <BrowserRouter>
         <Routes>

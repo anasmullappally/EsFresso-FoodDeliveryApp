@@ -26,6 +26,57 @@
         list-style: none;
         margin: 0;
         padding: 0;
+
+        .adminTitle {
+          font-size: 10px;
+          font-weight: bold;
+          color: #999;
+          margin-top: 15px;
+          margin-bottom: 5px;
+        }
+
+        li {
+          display: flex;
+          align-items: center;
+          padding: 5px;
+          cursor: pointer;
+
+          &:hover{
+            background-color: #ece8ff ;
+
+          }
+          .adminIcon {
+            font-size: 18px;
+            color: #7451f8;
+          }
+          span {
+            font-size: 13px;
+            font-weight: 600;
+            color: #888;
+            margin-left: 10px;
+          }
+        }
+    }
+  }
+  .adminBottom {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+
+    .colorOption {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      border: 1px solid #7451f8;
+      cursor: pointer;
+      margin: 5px;
+      &:nth-child(1) {
+        background-color: whitesmoke;
+      }
+      &:nth-child(2) {
+        background-color: #333;
+      }
+     
     }
   }
 }

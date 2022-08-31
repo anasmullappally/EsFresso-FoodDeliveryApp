@@ -7,7 +7,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import './register.css'
 import GoogleLogin from 'react-google-login'
 import { gapi } from 'gapi-script'
-import { GOOGLE_CLIENT_ID, serverURL } from '../../../config'
 import axios from 'axios'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -19,7 +18,7 @@ function Register(props) {
   gapi.load("client:auth2", () => {
     gapi.client.init({
       clientId:
-        GOOGLE_CLIENT_ID,
+      process.env.REACT_APP_GOOGLE_CLIENT_ID,
       plugin_name: "chat",
     });
   });
@@ -45,7 +44,7 @@ function Register(props) {
     try {
       const res = await axios({
         method: 'post',
-        url: `${serverURL}/googleSignIn`,
+        url: `${process.env.REACT_APP_serverURL}/googleSignIn`,
         data: {
           token: googleData.tokenId
         }
@@ -67,7 +66,7 @@ function Register(props) {
     try {
       const res = await axios({
         method: 'post',
-        url: `${serverURL}/otpRequest`,
+        url: `${process.env.REACT_APP_serverURL}/otpRequest`,
         data: data
       })
       if (res.status === 200) {
@@ -84,7 +83,7 @@ function Register(props) {
     try {
       const res = await axios({
         method: 'post',
-        url: `${serverURL}/otpVerify`,
+        url: `${process.env.REACT_APP_serverURL}/otpVerify`,
         data: {
           otp: OTP,
           data: registerData
@@ -158,7 +157,7 @@ function Register(props) {
           </div>
           <div className="googleAuth">
             <GoogleLogin
-              clientId={GOOGLE_CLIENT_ID}
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               buttonText='Log in with Google'
               onSuccess={handleRegister}
               onFailure={handleFailure}

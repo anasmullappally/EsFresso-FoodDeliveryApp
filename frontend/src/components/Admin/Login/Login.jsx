@@ -12,7 +12,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form';
 import { adminSignInSchema } from '../../../validation/useSingUp'
 import axios from 'axios';
-import { adminURL } from '../../../config';
 
 function Login() {
     const theme = createTheme();
@@ -26,7 +25,7 @@ function Login() {
         try {
             const res = await axios({
                 method: 'post',
-                url: `${adminURL}/signIn`,
+                url: `${process.env.REACT_APP_adminURL}/signIn`,
                 data: data
             })
             console.log(res);

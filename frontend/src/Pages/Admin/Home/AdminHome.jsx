@@ -4,6 +4,7 @@ import Home from '../../../components/Admin/Home/Home'
 function AdminHome() {
     return (
         <div className='home'>
+            
             <Home />
         </div>
 
