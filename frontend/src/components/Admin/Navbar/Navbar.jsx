@@ -31,10 +31,11 @@ function Navbar() {
                     </div>
                     <div className="adminItem">
                         <NotificationsNoneOutlinedIcon className='adminIcon' />
-
+                        <div className="adminCounter">3</div>
                     </div>
                     <div className="adminItem">
                         <ChatBubbleOutlineOutlinedIcon className='adminIcon' />
+                        <div className="adminCounter">1</div>
 
                     </div>
                     <div className="adminItem">

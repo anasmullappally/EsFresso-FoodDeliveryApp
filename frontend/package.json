@@ -16,6 +16,7 @@
     "gapi-script": "^1.2.0",
     "otp-input-react": "^0.3.0",
     "react": "^18.2.0",
+    "react-circular-progressbar": "^2.1.0",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
     "react-google-login": "^5.2.2",
@@ -23,6 +24,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "react-toastify": "^9.0.3",
+    "recharts": "^2.1.14",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },

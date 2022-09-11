@@ -3,7 +3,5 @@
   height: 100vh;
   background: #faf9fb;
 }
-.App::-webkit-scrollbar {
-  display: none;
-}
+
 
