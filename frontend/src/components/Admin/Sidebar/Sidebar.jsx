@@ -1,67 +1,58 @@
-import React from 'react'
+import { AccountBoxOutlined, Dashboard, GroupOutlined, ListOutlined, LogoutOutlined, NotificationsActiveOutlined, SettingsOutlined, Store } from "@mui/icons-material";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import './sidebar.scss'
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
-import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
-import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
-import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
-
 function Sidebar() {
+  let navigate = useNavigate()
   return (
-    <div className='sidebar'>
-      <div className="top">
-        <span className='adminLogo'>Admin</span>
-      </div>
+    <div className="sidebar">
+      <div className="top"><span className="logo">logo</span></div>
       <hr />
       <div className="center">
         <ul>
-          <p className="adminTitle">MAIN</p>
-          <li>
-            <DashboardIcon className='adminIcon'/>
-            <span> Dashboard </span>
-          </li>
-          <p className="adminTitle">LIST</p>
-          <li>
-            <PeopleOutlineOutlinedIcon className='adminIcon'/>
-            <span> Users </span>
+          <p className="title">MAIN</p>
+          <li  onClick={() => navigate('/admin/adminHome')}>
+            <Dashboard className='icon'/>
+            <span>Dashbord</span>
           </li>
           <li>
-            <MenuBookOutlinedIcon className='adminIcon' />
-            <span> Restaurants </span>
+            <Store className='icon'/>
+            <span>Product</span>
           </li>
           <li>
-            <Inventory2OutlinedIcon className='adminIcon' />
-            <span> Products </span>
+            <ListOutlined className='icon'/>
+            <span>Order</span>
+          </li>
+          <li onClick={() => navigate('/admin/users')}>
+            <GroupOutlined className='icon'/>
+            <span>Users</span>
+          </li>
+          <p className="title">LIST</p>
+          <li>
+            <NotificationsActiveOutlined className='icon'/>
+            <span>Notifications</span>
+          </li>
+          <p className="title">SERVICE</p>
+          <li>
+            <SettingsOutlined className='icon'/>
+            <span>Settings</span>
           </li>
           <li>
-            <ReceiptLongOutlinedIcon  className='adminIcon'/>
-            <span> Orders </span>
-          </li>
-          <p className="adminTitle">USEFULL </p>
-          <li> 
-            <NotificationsNoneOutlinedIcon  className='adminIcon'/>
-            <span> Notification </span>
-          </li>
-          <p className="adminTitle">USER</p>
-          <li>
-            <AccountCircleOutlinedIcon className='adminIcon'/>
-            <span> Profile </span>
+            <AccountBoxOutlined className='icon'/>
+            <span>Profile</span>
           </li>
           <li>
-            <LogoutOutlinedIcon className='adminIcon'/>
-            <span> LogOut </span>
+            <LogoutOutlined className='icon'/>
+            <span>Logout</span>
           </li>
         </ul>
       </div>
-      <div className="adminBottom">
+      <div className="bottom">
         <div className="colorOption"></div>
         <div className="colorOption"></div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;

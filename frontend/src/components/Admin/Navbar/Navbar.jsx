@@ -1,55 +1,56 @@
-import React from 'react'
-import './navbar.scss'
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import FullscreenExitOutlinedIcon from '@mui/icons-material/FullscreenExitOutlined';
-import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
-import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-
-function Navbar() {
+import {
+    ChatBubbleOutlineOutlined,
+    DarkModeOutlined,
+    FullscreenExitOutlined,
+    LanguageOutlined,
+    ListOutlined,
+    NotificationsNoneOutlined,
+    SearchOutlined,
+  } from "@mui/icons-material";
+  import React from "react";
+  import "./navbar.scss";
+  
+  function Navbar() {
     return (
-        <div className='adminNavbar'>
-            <div className="adminWraper">
-                <div className="adminSearch">
-                    <input type="text" placeholder='search' />
-                    <SearchOutlinedIcon />
-                </div>
-                <div className="adminItems">
-                    <div className="adminItem">
-                        <LanguageOutlinedIcon className='adminIcon' />
-                        English
-                    </div>
-                    <div className="adminItem">
-                        <DarkModeOutlinedIcon className='adminIcon' />
-
-                    </div>
-                    <div className="adminItem">
-                        <FullscreenExitOutlinedIcon className='adminIcon' />
-
-                    </div>
-                    <div className="adminItem">
-                        <NotificationsNoneOutlinedIcon className='adminIcon' />
-                        <div className="adminCounter">3</div>
-                    </div>
-                    <div className="adminItem">
-                        <ChatBubbleOutlineOutlinedIcon className='adminIcon' />
-                        <div className="adminCounter">1</div>
-
-                    </div>
-                    <div className="adminItem">
-                        <ListAltOutlinedIcon className='adminIcon' />
-                    </div>
-                    <div className="adminItem">
-                        <img src={require('../../../images/adminavatar.png')}
-                        alt="admin"
-                            className='adminAvatar' />
-                    </div>
-                </div>
+      <div className="navbar">
+        <div className="wrapper">
+          <div className="search">
+            <input type="text" placeholder="Search..." />
+            <SearchOutlined />
+          </div>
+          <div className="items">
+            <div className="item">
+              <LanguageOutlined className="icon" />
+              English
             </div>
+            <div className="item">
+              <DarkModeOutlined className="icon" />
+            </div>
+            <div className="item">
+              <FullscreenExitOutlined className="icon" />
+            </div>
+            <div className="item">
+              <NotificationsNoneOutlined className="icon" />
+              <div className="counter">1</div>
+            </div>
+            <div className="item">
+              <ChatBubbleOutlineOutlined className="icon" />
+              <div className="counter">1</div>
+            </div>
+            <div className="item">
+              <ListOutlined className="icon" />
+            </div>
+            <div className="item">
+              <img
+                src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"
+                alt=""
+                className="avatar"
+              />
+            </div>
+          </div>
         </div>
-    )
-}
-
-export default Navbar
+      </div>
+    );
+  }
+  
+  export default Navbar;

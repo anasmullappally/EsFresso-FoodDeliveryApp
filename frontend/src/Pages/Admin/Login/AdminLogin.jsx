@@ -3,9 +3,9 @@ import Login from '../../../components/Admin/Login/Login'
 
 function AdminLogin() {
   return (
-    <div>
+    <>
         <Login/>
-    </div>
+    </>
   )
 }
 

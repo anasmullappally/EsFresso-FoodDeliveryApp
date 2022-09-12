@@ -4,11 +4,11 @@ import Home from "./Pages/User/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import AdminLogin from "./Pages/Admin/Login/AdminLogin";
-import AdminHome from "./Pages/Admin/Home/AdminHome";
+import AdminHome from "./Pages/Admin/Home/Home";
 
 function App() {
   return (
-    <div className="App" style={{overflow:'hidden'}}>
+    < >
       <ToastContainer
       position="top-left"
       autoClose={3000}
@@ -27,7 +27,7 @@ function App() {
           <Route path="/adminHome" element={<AdminHome/>} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 

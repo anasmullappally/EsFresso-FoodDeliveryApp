@@ -1,62 +1,73 @@
-.adminNavbar {
-  height: 50px;
-  border-bottom: 0.5px solid rgb(231, 228, 228);
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: #555;
-  .adminWraper {
+.navbar {
+    height: 50px;
+    border-bottom: 0.5px solid rgb(231,228,228);
     display: flex;
     align-items: center;
-    padding: 20px;
-    justify-content: space-between;
-    width: 100%;
-    .adminSearch {
-      display: flex;
-      align-items: center;
-      border: 0.5px solid lightgray;
-      padding: 3px;
-      input {
-        border: none;
-        outline: none;
-        background-color: transparent;
-        &::placeholder {
-          font-size: 12px;
-        }
-      }
-    }
-    .adminItems {
-      display: flex;
-      align-items: center;
-      .adminItem {
+    font-style: 14px;
+    color: #555;
+
+    .wrapper {
         display: flex;
         align-items: center;
-        margin-right: 20px;
-        position: relative;
-        .adminIcon {
-          font-size: 20px;
+        padding: 20px;
+        justify-content: space-between;
+        width: 100%;
+
+        .search {
+            display: flex;
+            align-items: center;
+            border: 0.5px solid lightgray;
+            padding: 3px;
+
+            input {
+                border: none;
+                outline: none;
+                background-color: transparent;
+
+                &::placeholder {
+                    font-size: 12px;
+                }
+            }
         }
-        .adminAvatar {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
+
+        
+        .items {
+            display: flex;
+            align-items: center;
+
+
+            .item {
+                display: flex;
+                align-items: center;
+                margin-left: 20px;
+                position: relative;
+
+                .icon {
+                    font-size: 20px;
+                }
+
+                .avatar {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+
+                }
+
+                .counter {
+                    width: 15px;
+                    height: 15px;
+                    background-color: red;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 10px;
+                    font-weight: bold;
+                    position: absolute;
+                    top: -5px;
+                    right: -5px;
+                }
+            }
         }
-        .adminCounter {
-          width: 15px;
-          height: 15px;
-          border-radius: 50%;
-          color: white;
-          background-color: red;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 10px;
-          font-weight: bold;
-          position: absolute;
-          top: -5px;
-          right: -5px;
-        }
-      }
     }
-  }
 }

@@ -1,27 +1,28 @@
-import './chart.scss'
+import React from "react";
+import "./chart.scss";
 import {
   AreaChart,
   Area,
   XAxis,
+  YAxis,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
 
 const data = [
-  { name: "January", Total: 1200 },
-  { name: "February", Total: 2100 },
-  { name: "March", Total: 800 },
-  { name: "April", Total: 1600 },
-  { name: "May", Total: 900 },
-  { name: "June", Total: 1700 },
+ { name: 'January', Total: 1200},
+ { name: 'February', Total: 2100},
+ { name: 'March', Total: 800 },
+ { name: 'April', Total: 1600 },
+ { name: 'May', Total: 900},
+ { name: 'June', Total: 1700},
 ];
-
-const Chart = ({ aspect, title }) => {
+function Chart() {
   return (
     <div className="chart">
-      <div className="title">{title}</div>
-      <ResponsiveContainer width="100%" aspect={aspect}>
+      <div className="title">Last 6 months (Revenue)</div>
+      <ResponsiveContainer width="100%" aspect={2 /1}>
         <AreaChart
           width={730}
           height={250}
@@ -35,7 +36,8 @@ const Chart = ({ aspect, title }) => {
             </linearGradient>
           </defs>
           <XAxis dataKey="name" stroke="gray" />
-          <CartesianGrid strokeDasharray="3 3" className="chartGrid" />
+          <YAxis />
+          <CartesianGrid strokeDasharray="3 3" className="chartGrid"/>
           <Tooltip />
           <Area
             type="monotone"
@@ -44,10 +46,11 @@ const Chart = ({ aspect, title }) => {
             fillOpacity={1}
             fill="url(#total)"
           />
+  
         </AreaChart>
       </ResponsiveContainer>
     </div>
   );
-};
+}
 
 export default Chart;
