@@ -3,7 +3,8 @@
   height: 100vh;
   background: #faf9fb;
   /* overflow-y: hidden; */
-  /* overflow: hidden; */
+  overflow: hidden;
+
 }
 
 

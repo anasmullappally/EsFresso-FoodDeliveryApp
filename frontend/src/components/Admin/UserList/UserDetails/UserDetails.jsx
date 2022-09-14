@@ -10,7 +10,7 @@ function UserDetails() {
       <div className="mainContainer">
         <div className="photoContainer">
           <img
-            src="https://play-lh.googleusercontent.com/CWzqShf8hi-AhV9dUjzsqk2URzdIv8Vk2LmxBzf-Hc8T-oGkLVXe6pMpcXv36ofpvtc=w240-h480-rw"
+            src=""
             alt=""
           />
         </div>

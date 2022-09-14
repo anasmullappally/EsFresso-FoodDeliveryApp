@@ -1,12 +1,12 @@
 import React from 'react'
-import Datatable from './dataTable/Datatable'
-import UserDetails from './userDetails/UserDetails'
+import Datatable from './DataTable/DataTable'
+import UserDetails from './UserDetails/UserDetails'
 import './userList.scss'
 function UserList() {
   return (
     <div className='userContiner'>
         <Datatable/>
-        <UserDetails/>
+        {/* <UserDetails/> */}
     </div>
   )
 }
