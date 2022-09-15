@@ -1,6 +1,5 @@
 # EsFresso-FoodDeliveryApp(on-going)
 
-
 ## Table of contents
 
 - [Introduction](#introduction)
@@ -20,12 +19,9 @@ NOTE: Please read the RUN section before opening an issue.
 
 ![screenshot](esfresso.png)
 
-
 The website resembles a real store and you can add products to your cart and pay for them.
 
-
 In order to access the admin panel on "/admin" you need to provide the admin email and password.
-
 
 ## Run
 
@@ -41,9 +37,9 @@ To run this application, you have to set your own environmental variables. For s
 
 - TWILIO_AUTH_TOKEN: This is the Twilio AuthToken (string).
 
-- ACCESS_TOKEN_SECRET: This is the jwt Access Token, Genarate Random Sceret Id 
+- ACCESS_TOKEN_SECRET: This is the jwt Access Token, Generate Random Secret Id
 
-- REFRESH_TOKEN_SECRET: This is the jwt Refresh Token, Genarate Random Sceret Id 
+- REFRESH_TOKEN_SECRET: This is the jwt Refresh Token, Generate Random Secret Id
 
 - PORT: Specify the port Number
 
@@ -51,10 +47,11 @@ To run this application, you have to set your own environmental variables. For s
 
 #### frontend
 
+- REACT_APP_serverURL: Backend URL
+- REACT_APP_adminURL: Backend URL`/admin`
+- REACT_APP_GOOGLE_CLIENT_ID: This is the Google Client ID
 
-
-
-After you've set these environmental variables in the .env .Both Frontend and Backend have node modules using  `npm install` ,
+After you've set these environmental variables in the .env .Both Frontend and Backend have node modules using `npm install` ,
 
 Now you can run `npm start` in the terminal of both folders and the application should work.
 
@@ -62,9 +59,9 @@ Now you can run `npm start` in the terminal of both folders and the application 
 
 The application is built with:
 
-- Node.js 
+- Node.js
 - MongoDB
-- React  
+- React
 - Google Authentication
 - Twilio
 - Material UI
@@ -72,17 +69,15 @@ The application is built with:
 
 ## Features
 
-The application displays a virtual Food Delivery app  that contains virtual products and its information.
+The application displays a virtual Food Delivery app that contains virtual products and its information.
 
 Users can do the following:
 
 - Create an account, login or logout
- 
 
 Vendors can do the following:
 
 - Create an account, login or logout
-
 
 Admins can do the following:
 

@@ -11,6 +11,7 @@ import Users from "./Pages/Admin/Users/Users";
 //vendor
 import VendorLogin from "./Pages/Vendor/Login/Login";
 import VendorRegister from "./Pages/Vendor/Register/Register";
+import VendorHome from "./Pages/Vendor/Home/Home";
 
 
 
@@ -35,8 +36,8 @@ function App() {
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/users" element={<Users />} />
-
-          <Route path="/vendor" element={<VendorLogin />} />
+          <Route path="/vendor" element={<VendorHome/>} />
+          <Route path="/vendor/login" element={<VendorLogin />} />
           <Route path="/vendor/register" element={<VendorRegister />} />
         </Routes>
       </BrowserRouter>

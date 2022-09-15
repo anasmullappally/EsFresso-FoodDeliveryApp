@@ -47,7 +47,7 @@ function Header() {
 
 
   return (
-    <header>
+    <header className="header">
       <img
         className="logo"
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ09GvkuTHftwlfilPgLNSgn9llW1iuen9XNA&usqp=CAU"

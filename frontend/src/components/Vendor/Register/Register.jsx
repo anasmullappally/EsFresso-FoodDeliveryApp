@@ -79,7 +79,7 @@ export default function RegisterRestuarent() {
             <Container component="main" maxWidth="sm"  sx={{ m:"auto" , mb :3 }} >
                 <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                     <Typography component="h1" variant="h4" align="center">
-                    Restaurent Registration
+                    Restaurant Registration
                     </Typography>
                     <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
                         {steps.map((label) => (
@@ -92,12 +92,12 @@ export default function RegisterRestuarent() {
                         {activeStep === steps.length ? (
                             <React.Fragment>
                                 <Typography variant="h5" gutterBottom>
-                                    Thank you for your order.
+                                Thank you for your Registration.
                                 </Typography>
                                 <Typography variant="subtitle1">
-                                    Your order number is #2001539. We have emailed your order
+                                Your Registration number is #2001539. We have emailed your Registration
                                     confirmation, and will send you an update when your order has
-                                    shipped.
+                                    Approved.
                                 </Typography>
                             </React.Fragment>
                         ) : (

@@ -9,17 +9,17 @@ export default function AddressForm() {
   return (
     <React.Fragment >
       <Typography variant="h6" gutterBottom mb={3}>
-        Restaurent Details
+        Restaurant Details
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} >
           <TextField
             required
-            id="restuarentName"
-            name="restuarentName"
-            label="Restuarent Name "
+            id="restaurantName"
+            name="restaurantName"
+            label="Restaurant Name "
             fullWidth
-            autoComplete="restuarentName"
+            autoComplete="restaurantName"
             variant="outlined"
           />
         </Grid>
@@ -127,7 +127,7 @@ export default function AddressForm() {
 
       </Grid>
       <Typography variant="h6" gutterBottom mt={5} mb={3}>
-        Restaurent Owner Details
+        Restaurant Owner Details
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} >

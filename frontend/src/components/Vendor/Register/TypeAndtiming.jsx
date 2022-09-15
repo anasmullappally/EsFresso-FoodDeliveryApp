@@ -25,7 +25,7 @@ export default function TypeAndTiming() {
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
-                Restuarent Type
+                Restaurant Type
             </Typography>
             <Box sx={{ minWidth: 120 }} mt={1}>
                 <FormControl fullWidth>
