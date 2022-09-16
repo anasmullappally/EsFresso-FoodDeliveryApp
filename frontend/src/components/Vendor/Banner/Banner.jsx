@@ -5,7 +5,7 @@ import Typography from '../Models/Typography';
 import ProductLayout from './ProductLayout';
 
 const backgroundImage =
-  'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400';
+  'https://caterease.com/wp-content/uploads/2019/01/Final-Background-For-Login.png';
 
 export default function Banner() {
   return (
@@ -23,7 +23,7 @@ export default function Banner() {
         alt="increase priority"
       />
       <Typography color="inherit" align="center" variant="h2" marked="center">
-        Upgrade your Sundays
+       Welcome To EsFresso
       </Typography>
       <Typography
         color="inherit"
@@ -31,30 +31,30 @@ export default function Banner() {
         variant="h5"
         sx={{ mb: 4, mt: { sx: 4, sm: 10 } }}
       >
-        Enjoy secret offers up to -70% off the best luxury hotels every Sunday.
+        EAT GOOD FEEL GOOD 
       </Typography>
       <Grid>
       <Button
-        color="secondary"
-        variant="contained"
-        size="large"
+        color="info"
+        variant="outlined"
+        size="medium"
         component="a"
-        href="/premium-themes/onepirate/sign-up/"
-        sx={{ minWidth: 200 }}
+        href=""
+        sx={{ minWidth: 250 }}
       
       >
-        Register
+        REGISTER YOUR RESTAURANT
       </Button>
       <Button
-        color="primary"
-        variant="contained"
-        size="large"
+        color="info"
+        variant="outlined"
+        size="medium"
         component="b"
-        href="/premium-themes/onepirate/sign-up/"
-        sx={{ minWidth: 200 }}
+        href=""
+        sx={{ minWidth: 250 }}
         
       >
-        LOgin
+        ALREADY HAVE  AN ACCOUNT
       </Button>
       </Grid>
       <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>

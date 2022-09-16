@@ -64,7 +64,7 @@ function ProductLayout(props) {
         <Background sx={sxBackground} />
         <Box
           component="img"
-          src="/static/themes/onepirate/productHeroArrowDown.png"
+          src="https://mui.com/static/themes/onepirate/productHeroArrowDown.png"
           height="16"
           width="12"
           alt="arrow down"
